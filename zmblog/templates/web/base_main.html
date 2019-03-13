@@ -1,0 +1,57 @@
+
+{% extends 'web/base.html' %}
+
+{% block css %}
+    <link href="/static/web/css/base.css" rel="stylesheet">
+    <link href="/static/web/css/m.css" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    <!--[if lt IE 9]>
+    <script src="/static/web/js/modernizr.js"></script>
+    <!--<![endif]&ndash;&gt;-->
+    <!--<script>-->
+    <!--window.onload = function ()-->
+    <!--{-->
+        <!--var oH2 = document.getElementsByTagName("h2")[0];-->
+        <!--var oUl = document.getElementsByTagName("ul")[0];-->
+        <!--oH2.onclick = function ()-->
+        <!--{-->
+            <!--var style = oUl.style;-->
+            <!--style.display = style.display == "block" ? "none" : "block";-->
+            <!--oH2.className = style.display == "block" ? "open" : ""-->
+        <!--}-->
+    <!--}-->
+    <!--</script>-->
+{% endblock %}
+
+
+{% block header %}
+    <header>
+      <!--<div id="mnav">-->
+        <!--<h2><span class="navicon"></span></h2>-->
+        <!--<ul>-->
+          <!--<li><a href="index.html">网站首页</a></li>-->
+          <!--<li><a href="about.html">关于我</a></li>-->
+          <!--<li><a href="list.html">学无止境</a></li>-->
+          <!--<li><a href="gbook.html">留言</a></li>-->
+        <!--</ul>-->
+      <!--</div>-->
+      <nav>
+        <ul>
+          <li><a href="{{ url_for('web.index') }}">网站首页</a></li>
+          <li><a href="{{ url_for('web.about') }}">关于我</a></li>
+          <li><a href="{{ url_for('web.art_list', id=1) }}">文章列表</a></li>
+          <li><a href="{{ url_for('web.gbook') }}">留言</a></li>
+        </ul>
+      </nav>
+    </header>
+{% endblock %}
+
+
+{% block footer %}
+    <footer>
+        <p><a href="#">woming个人博客</a> <a href="#">蜀ICP备999999999号-9</a></p>
+    </footer>
+{% endblock %}
+

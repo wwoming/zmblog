@@ -1,0 +1,38 @@
+
+{% extends 'back/base_main.html' %}
+
+{% block title %}
+    文章分类列表
+{% endblock %}
+
+{% block content %}
+
+    <section class="rt_wrap content mCustomScrollbar">
+        <div class="rt_content">
+            <div class="page_title">
+                <h2 class="fl">文章分类列表</h2>
+                <a href="{{ url_for('back.add_article_category') }}" class="fr top_rt_btn add_icon">添加文章分类</a>
+            </div>
+            <table class="table">
+                <tr>
+                    <th>文章类型名</th>
+                    <th>操作</th>
+                </tr>
+                {% for art_type in art_types %}
+                    <tr>
+                        <td class="center">
+                            {{ art_type.tp_name }}
+                        </td>
+                        <td class="center">
+                            <a href="{{ url_for('back.update_category', id=art_type.id) }}"
+                               title="编辑" class="link_icon">&#101;</a>
+                            <a href="{{ url_for('back.del_art_category', id=art_type.id) }}"
+                               title="删除" class="link_icon">&#100;</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+
+{% endblock %}

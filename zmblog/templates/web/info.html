@@ -1,0 +1,82 @@
+
+{% extends 'web/base_main.html' %}
+
+{% block title %}
+    全文-{{ article.title }}
+{% endblock %}
+
+{% block css %}
+    {{ super() }}
+    <link href="/static/web/css/info.css" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    {{ super() }}
+<!--评论功能-->
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+{% endblock %}
+
+{% block article %}
+    <article>
+
+        <div class="infos">
+          <div class="newsview">
+            <h2 class="intitle">您现在的位置是：<a href="{{ url_for('web.index') }}">网站首页</a>&nbsp;&gt;
+                &nbsp;<a href="">阅读全文</a></h2>
+            <h3 class="news_title">{{ article.title }}</h3>
+            <div class="news_author"><span class="au01">zhuming</span>
+                <span class="au02">{{ article.create_date }}</span>
+                <!--<span class="au03">共<b>999</b>人围观</span>-->
+            </div>
+            <div class="tags">
+                <a href="#">{{ article.art_tp.tp_name }}</a>
+            </div>
+            <div class="news_about"><strong>简介</strong>{{ article.desc }}</div>
+            <div class="news_infos">
+                {{ article.content | safe }}
+            </div>
+          </div>
+        </div>
+        <div class="nextinfo">
+            {% if article.id == ids | min %}
+            <p>上一篇：<font >无</font></p>
+            {% else %}
+            <p>上一篇：<a href="{{ url_for('web.info', id=pre_article.id) }}" >{{ pre_article.title }}</a></p>
+            {% endif %}
+
+            {% if article.id == ids | max %}
+            <p>下一篇：<font >这已经是最后一篇了</font></p>
+            {% else %}
+            <p>下一篇：<a href="{{ url_for('web.info', id=next_article.id) }}" >{{ next_article.title }}</a></p>
+            {% endif %}
+
+        </div>
+        <div class="otherlink">
+          <h2>相关文章</h2>
+          <ul>
+            <li><a href="https://mp.weixin.qq.com/s/06eYdOJX2dLT6pTWzkYmqA" target="_blank">我再也不登山了</a></li>
+            <li><a href="https://mp.weixin.qq.com/s/KgbeMtEdlGzMmCu5T40Nwg" target="_blank">【雀儿】自由之地</a></li>
+
+          </ul>
+        </div>
+        <div class="news_pl">
+          <h2>文章评论</h2>
+            <div id="vcomments" class="gbko">
+                <script>
+                    new Valine({
+                        el: '#vcomments',
+                        appId: '7ujDnnmxm2RNBSoYMvHApIV4-gzGzoHsz',
+                        appKey: 'GsCa5ByL77F1X6o9UB16bKi1',
+                        notify:false,
+                        verify:false,
+                        avatar:'mm',
+                        placeholder: '有什么想说的，放心大胆的说吧！反正我也不知道你家地址在哪儿。',
+                        pageSize:5,
+                    })
+                </script>
+            </div>
+        </div>
+
+    </article>
+{% endblock %}

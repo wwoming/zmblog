@@ -1,0 +1,99 @@
+
+{% extends 'back/base_main.html' %}
+
+{% block title %}
+    添加文章
+{% endblock%}
+
+
+{% block js %}
+    {{ super() }}
+    {#    使用jinjia导入两个js#}
+    <!--<script src="{{ url_for('static', filename='tinymce/js/tinymce/tinymce.min.js') }}"></script>-->
+    <!--<script src="{{ url_for('static', filename='tynimce/tinymce_setup.js') }}"></script>-->
+    <script type="text/javascript" src="/static/kindeditor/kindeditor-all.js"></script>
+    <script type="text/javascript" src="/static/kindeditor/lang/zh-CN.js"></script>
+    <script type="text/javascript">
+        KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id');
+        });
+   </script>
+
+{% endblock %}
+
+{% block content %}
+
+    <section class="rt_wrap mCustomScrollbar">
+
+        <div class="rt_content">
+            <div class="page_title">
+                <h2 class="fl">文章详情</h2>
+                <a class="fr top_rt_btn" href="{{ url_for('back.article_list') }}">返回文章列表</a>
+            </div>
+            <form action="" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='q3tTrBuDcMhfvSS9x2u0yQAyRbboSQuyMyt42kgwgKS0rKxCv31hIWTsS3ULhZn7' />
+                <section>
+                    <ul class="ulColumn2">
+                        <font style="font-weight:900;margin-left:200px;color:red;">{{ error }}</font>
+                        <li>
+                            <span class="item_name" style="width:120px;">标题：</span>
+                            <input type="text" name="title" class="textbox textbox_295"
+                                   maxlength="20" placeholder="不超过20个字"
+                                   {% if article %} value="{{ article.title }}" {% else %}
+                                   placeholder="文章标题..." {% endif %}/>
+                        </li>
+                        <li>
+                            <span class="item_name" style="width:120px;">文章类型：</span>
+                            <select class="select" name="type" style="width:307px;">
+                                {% for art_type in art_types %}
+                                {% if article %}
+                                    <option value="{{ art_type.id }}"
+                                        {% if article.tp_id == art_type.id %} selected="selected" {% endif %}>{{ art_type.tp_name }}</option>
+                                {% else %}
+                                    <option value="{{ art_type.id }}">{{ art_type.tp_name }}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+
+                        </li>
+                        <li>
+                            <span class="item_name" style="width:120px;">文章描述：</span>
+                            {% if article %}
+                            <!--<input type="text" name="desc" maxlength="100"  class="textbox textbox_295" placeholder="文章简介不超过100个字..."/>-->
+                            <textarea name="desc" maxlength="100"
+                                      class="textbox textbox_295">{{ article.desc }}</textarea>
+                            {% else %}
+                            <textarea name="desc" maxlength="100"  class="textbox textbox_295"
+                                      placeholder="文章简介不超过100个字..."></textarea>
+                            {% endif %}
+                        </li>
+
+                        <li>
+                            <span class="item_name" style="width:120px;">文章内容：</span>
+                            <label style="display:inline-block;padding:15px;width:800px;background:#f8f8f8;vertical-align:text-top;">-->
+                                <textarea id="editor_id" name="content" style="width:800px;height:300px;">
+                                    {% if article %}
+                                    {{ article.content }}
+                                    {% else %}
+                                    &lt;strong&gt;HTML内容&lt;/strong&gt;
+                                    {% endif %}
+                                </textarea>
+                            </label>
+
+                            <!--<label style="display:inline-block;padding:15px;width:800px;background:#f8f8f8;vertical-align:text-top;">-->
+                                <!--<input class="editor" name="content" id="content">-->
+                            <!--</label>-->
+                        </li>
+
+                        <li>
+                            <span class="item_name" style="width:120px;"></span>
+                            <input type="submit" class="link_btn"/>
+                            <!--<font style="font-weight:900;">{{ error }}</font>-->
+                        </li>
+                    </ul>
+                </section>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}

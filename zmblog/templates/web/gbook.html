@@ -1,0 +1,44 @@
+
+{% extends 'web/base_main.html' %}
+
+{% block title %}
+    留言簿
+{% endblock %}
+
+{% block css %}
+    {{ super() }}
+    <link href="/static/web/css/gbook.css" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+    <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+{% endblock %}
+
+
+{% block article %}
+    <article>
+      <h2 class="litle"><span>山有木兮木有枝，心悦君兮君不知。</span>留言</h2>
+        <div class="gbko">
+
+        </div>
+            <div id="vcomments" class="gbko">
+                <script>
+                    new Valine({
+                        el: '#vcomments',
+                        appId: '7ujDnnmxm2RNBSoYMvHApIV4-gzGzoHsz',
+                        appKey: 'GsCa5ByL77F1X6o9UB16bKi1',
+                        notify:false,
+                        verify:false,
+                        avatar:'mm',
+                        placeholder: '有什么想说的，放心大胆的说吧！反正我也不知道你家地址在哪儿。',
+                        pageSize:5,
+                    })
+                </script>
+            </div>
+
+
+    </article>
+{% endblock %}
+
+

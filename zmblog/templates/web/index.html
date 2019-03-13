@@ -1,0 +1,126 @@
+
+{% extends 'web/base_main.html' %}
+
+{% block title %}
+    首页-zhuming个人博客
+{% endblock %}
+
+{% block css %}
+    {{ super() }}
+    <link href="/static/web/css/index.css" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    {{ super() }}
+    <script src="/static/web/js/jquery.min.js"></script>
+    <script src="/static/web/js/jquery.easyfader.min.js"></script>
+{% endblock %}
+
+{% block article %}
+    
+    <article>
+      <div class="banner">
+        <div id="sucaihuo" class="fader">
+            <img class="slide" src="/static/web/images/banner01.jpg">
+            <img class="slide" src="/static/web/images/banner02.jpg">
+            <img class="slide" src="/static/web/images/banner03.jpg">
+          <div class="fader_controls">
+            <div class="page prev" data-target="prev">&lsaquo;</div>
+            <div class="page next" data-target="next">&rsaquo;</div>
+            <ul class="pager_list">
+            </ul>
+          </div>
+        </div>
+        <script>
+    $(function() {
+        $('#sucaihuo').easyFader();
+    });
+    </script>
+      </div>
+    
+      <div class="newblogs">
+        <h2 class="hometitle">最新文章</h2>
+        <ul>
+            {% for article in articles %}
+            {% if loop.index < 6 %}
+              <li>
+                  <!--点击标签跳转-->
+                <!--<h3 class="blogtitle"><span><a href="#" title="css3" target=""-->
+                   <!--class="classname">{{ article.art_tp.tp_name }}</a></span>-->
+                    <!--<a href="{{ url_for('web.info', id=article.id) }}"-->
+                    <!--target="_blank" >{{ article.title }}</a>-->
+                <!--</h3>-->
+                  <!--点击标签不跳转-->
+                <h3 class="blogtitle"><span><font class="classname">{{ article.art_tp.tp_name }}</font></span>
+                    <a href="{{ url_for('web.info', id=article.id) }}"
+                    target="_blank" >{{ article.title }}</a>
+                </h3>
+                <div class="bloginfo"><span class="blogpic">
+                    <a href="{{ url_for('web.info', id=article.id) }}" title="" target="_blank">
+                    <img src="/static/web/images/b01.jpg"  /></a></span>
+                  <p>{{ article.desc }}</p>
+                </div>
+                <div class="autor"><span class="lm f_l"></span>
+                        <span class="dtime f_l">{{ article.create_date }}</span>
+                        <!--<span class="viewnum f_l">浏览（<a href="#">999</a>）</span>-->
+                        <span class="f_r">
+                            <a href="{{ url_for('web.info', id=article.id) }}"
+                               target="_blank" class="more">阅读原文>></a>
+                        </span>
+                </div>
+                <div class="line"></div>
+              </li>
+            {% endif %}
+            {% endfor %}
+
+        </ul>
+      </div>
+        
+      <div class="rbox">
+        <div class="paihang">
+          <h2 class="hometitle">站长推荐</h2>
+          <ul>
+           {% for article in articles %}
+              {% if loop.index < 4 %}
+                <!--<li><b><a href="{{ url_for('web.info', id=article.id) }}" target="_blank">{{ article.title }}</a></b>-->
+                  <!--<p><i><img src="/static/web/images/b06.jpg"  /></i>{{ article.desc }}..</p>-->
+                <!--</li>-->
+              {% endif %}
+           {% endfor %}
+              <!--自定义网络链接-->
+                <li><b><a href="https://mp.weixin.qq.com/s/06eYdOJX2dLT6pTWzkYmqA" target="_blank">我再也不登山了</a></b>
+                  <p><i><img src="/static/web/images/b06.jpg"  /></i>博主登山经历，有兴趣可以了解一下啊</p>
+                </li>
+              <li><b><a href="https://mp.weixin.qq.com/s/KgbeMtEdlGzMmCu5T40Nwg" target="_blank">【雀儿】自由之地</a></b>
+                  <p><i><img src="/static/web/images/b06.jpg"  /></i>博主第一次登山的队友写的文章</p>
+                </li>
+
+          </ul>
+        </div>
+        <div class="links">
+          <h2 class="hometitle">友情链接</h2>
+          <ul>
+            <li><a href="https://github.com/wwoming">woming-github</a></li>
+            <li><a href="https://weibo.com/">weibo</a></li>
+            <li><a href="https://www.8264.com/">8264户外资料网</a></li>
+          </ul>
+        </div>
+        <div class="weixin">
+          <h2 class="hometitle">个人微信</h2>
+          <ul>
+              <li>
+                  <img src="/static/web/images/wx.jpg" />
+              </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+
+{% endblock %}
+
+
+
+
+
+

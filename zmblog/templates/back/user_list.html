@@ -1,0 +1,49 @@
+
+{% extends 'back/base_main.html' %}
+
+{% block title %}
+    用户管理界面
+{% endblock %}
+
+{% block content %}
+<section class="rt_wrap content mCustomScrollbar">
+ <div class="rt_content">
+    <div class="page_title">
+        <h2 class="fl">用户列表</h2>
+        <!--<a href="user_detail.html" class="fr top_rt_btn add_icon">添加新会员</a>-->
+    </div>
+    <table class="table">
+        <tr>
+            <th>Id</th>
+            <th>用户名</th>
+            <th>电子邮件</th>
+            <th>注册时间</th>
+            <th>操作</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td class="center">{{ user.id }}</td>
+                <td class="center">{{ user.username }}</td>
+                <td class="center">{{ user.email }}</td>
+                <td class="center">{{ user.regisdate }}</td>
+
+                <td class="center">
+                    <!--<a href="user_detail.html" title="编辑" class="link_icon">&#101;</a>-->
+                    <a href="{{ url_for('back.del_user', id=user.id) }}"
+                       title="删除" class="link_icon">&#100;</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </table>
+        <aside class="paging">
+            <!--<a>第一页</a>-->
+            <!--<a>1</a>-->
+            <!--<a>2</a>-->
+            <!--<a>…</a>-->
+            <!--<a>4</a>-->
+            <!--<a>最后一页</a>-->
+        </aside>
+ </div>
+</section>
+
+{% endblock %}

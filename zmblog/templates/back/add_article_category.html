@@ -1,0 +1,47 @@
+
+
+{% extends 'back/base_main.html' %}
+
+{% block title %}
+    添加文章分类
+{% endblock %}
+
+{% block content %}
+
+    <section class="rt_wrap mCustomScrollbar">
+
+        <div class="rt_content">
+            <div class="page_title">
+                <h2 class="fl">添加文章分类</h2>
+                <a class="fr top_rt_btn" href="{{ url_for('back.article_category_list') }}">返回文章分类列表</a>
+            </div>
+            <form action="" method="post">
+                <input type='hidden' name='csrfmiddlewaretoken' value='etyOfxyfqllVlf0tMSkvPkrzgjEdjgNSAYyZQgk8ujWGh7FWKTRMZqKthbnAIpGr' />
+                <section>
+                    <ul class="ulColumn2">
+                        <li style="font-weight:900;margin-left:20px;">
+                            {{ error }}
+                        </li>
+                        <li>
+                            <span class="item_name" style="width:120px;">文章分类名称：</span>
+                            {% if art_type %}
+                            <input type="text" name="category" value="{{ art_type.tp_name }}"
+                                   maxlength="20" placeholder="不超过20个字" style="width:200px;">
+                            {% else %}
+                            <input type="text" name="category" value=""
+                                   maxlength="20" placeholder="不超过20个字" style="width:200px;">
+                            {% endif %}
+                        </li>
+
+                        <li>
+                            <span class="item_name" style="width:120px;"></span>
+                            <input type="submit" class="link_btn"/>
+                        </li>
+                    </ul>
+                </section>
+            </form>
+        </div>
+    </section>
+
+
+{% endblock %}

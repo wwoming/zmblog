@@ -1,0 +1,45 @@
+{% extends '/back/base.html' %}
+
+{% block css %}
+    <link rel="stylesheet" type="text/css" href="/static/back/css/style.css">
+{% endblock %}
+
+{% block js %}
+    <script src="/static/back/js/jquery.js"></script>
+    <script src="/static/back/js/jquery.mCustomScrollbar.concat.min.js"></script>
+{% endblock %}
+
+{% block header %}
+    <header>
+        <h1><a href="{{ url_for('back.index') }}"><img src="/static/back/images/admin_logo.png"/></a></h1>
+        <ul class="rt_nav">
+            <li><a href="{{ url_for('web.index') }}" target="_blank" class="website_icon">站点首页</a></li>
+            <li><a href="{{ url_for('back.user_list') }}" class="set_icon">账号设置</a></li>
+            <li><a href="{{ url_for('back.logout') }}" class="quit_icon">安全退出</a></li>
+        </ul>
+    </header>
+{% endblock %}
+
+{% block aside %}
+    <aside class="lt_aside_nav content mCustomScrollbar">
+        <h2><a href="">博客后台菜单栏</a></h2>
+        <ul>
+            <li>
+                <dl>
+                    <dt>文章管理</dt>
+                    <!--当前链接则添加class:active-->
+                    <dd><a href="{{ url_for('back.article_category_list') }}">文章分类</a></dd>
+                    <dd><a href="{{ url_for('back.article_list') }}">文章列表</a></dd>
+                </dl>
+            </li>
+
+            <li>
+                    <dl>
+                        <dt>用户管理</dt>
+                        <dd><a href="{{ url_for('back.user_list') }}">用户列表</a></dd>
+                    </dl>
+                </li>
+        </ul>
+    </aside>
+{% endblock %}
+

@@ -1,0 +1,57 @@
+
+{% extends 'web/base_main.html' %}
+
+{% block title %}
+    关于博主
+{% endblock %}
+
+{% block css %}
+    {{ super() }}
+    <link href="/static/web/css/about.css" rel="stylesheet">
+{% endblock %}
+
+{% block article %}
+    <article>
+     <h2 class="litle"><span>花儿开在春风里，你笑得甜如蜜。</span>关于我</h2>
+     <div class="ab_box">
+      <div class="leftbox">
+          <div class="newsview">
+            <div class="news_infos" style="text-align:center;">
+                <p>暂时没什么写的，就放一首诗经吧。</p><br>
+             <p>
+                蒹葭苍苍，白露为霜。所谓伊人，在水一方，溯洄从之，道阻且长。溯游从之，宛在水中央。<br>
+                 蒹葭萋萋，白露未晞。所谓伊人，在水之湄。溯洄从之，道阻且跻。溯游从之，宛在水中坻。<br>
+                 蒹葭采采，白露未已。所谓伊人，在水之涘。溯洄从之，道阻且右。溯游从之，宛在水中沚。
+             </p>
+            </div>
+        </div>
+        <div class="meandblog">
+          <h2>我和我的博客</h2>
+          <ul>
+            <li><a href="#"
+                   target="">博主正在努力中...</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="rightbox">
+        <div class="aboutme">
+          <h2 class="hometitle">关于我</h2>
+          <div class="avatar"> <img src="/static/web/images/tx.JPG"> </div>
+          <div class="ab_con">
+            <p>网名：woming | 。。。</p>
+            <p>职业：游人 </p>
+            <p>邮箱：womingly@sina.cn</p>
+
+          </div>
+        </div>
+        <div class="weixin">
+          <h2 class="hometitle">个人微信</h2>
+          <ul>
+            <img src="/static/web/images/wx.jpg">
+          </ul>
+        </div>
+      </div>
+     </div>
+    </article>
+{% endblock %}
