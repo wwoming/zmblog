@@ -57,12 +57,16 @@ def login():
         if not check_password_hash(user.password, password):
             error = '密码错误，请重新输入'
             return render_template('back/login.html', error=error)
+        # 用户名和密码都对，判断是否已被注销
+        if user.is_delete == 1:
+            error = '该账号已被注销，请另外注册'
+            return render_template('back/login.html', error=error)
         # 用户名和密码都对，设置session
         session['user_id'] = user.id
         return redirect(url_for('back.index'))
 
 
-# 注销
+# 安全退出
 @back_blue.route('/logout/')
 @is_login
 def logout():
@@ -83,15 +87,15 @@ def user_list():
 
 # 删除用户
 @back_blue.route('/del_user/<int:id>/', methods=['GET', 'POST'])
-# @is_login  # 这里如果不判断是否已经登录，那就算没有登录也可以直接输入路由地址删除用户
+@is_login  # 装饰器里添加不定长参数！！！
 def del_user(id):
-    # 删除用户，直接访问路由能删吗？ 好像不能
-    # 删除用户的同时应该删除对应的session,但是这里删除session,就所有账号的都删了，就会返回登录界面，应该要有个超级管理员
-    # del session['user_id']
-    if not session['user_id']:
-        return redirect(url_for('back.login'))
+    # 删除用户的同时应该删除对应的session,但是这里删除session,就当前浏览器的session都删了，就会返回登录界面，应该要有个超级管理员
+    del session['user_id']
     user = User.query.get(id)
+    print(user.is_delete)
     user.is_delete = 1
+    user.save()
+    print(user.is_delete)
     return redirect(url_for('back.user_list'))
 
 
@@ -129,9 +133,8 @@ def add_article_category():
 
 # 删除文章分类
 @back_blue.route('/del_art_category/<int:id>/', methods=['GET', 'POST'])
+@is_login
 def del_art_category(id):
-    if not session['user_id']:
-        return redirect(url_for('back.login'))
     art_type = Article_type.query.get(id)
     art_type.delete()
     return redirect(url_for('back.article_category_list'))
@@ -139,10 +142,9 @@ def del_art_category(id):
 
 # 修改文章分类
 @back_blue.route('/update_category/<int:id>/', methods=['GET', 'POST'])
+@is_login
 def update_category(id):
     if request.method == 'GET':
-        if not session['user_id']:
-            return redirect(url_for('back.login'))
         art_type = Article_type.query.get(id)
         return render_template('back/add_article_category.html', art_type=art_type)
     if request.method == 'POST':
@@ -204,9 +206,8 @@ def add_article():
 
 # 删除文章
 @back_blue.route('/del_article/<int:id>', methods=['GET', 'POST'])
+@is_login
 def del_article(id):
-    if not session['user_id']:
-        return redirect(url_for('back.login'))
     article = Article.query.get(id)
     article.delete()
     return redirect(url_for('back.article_list'))
@@ -214,10 +215,9 @@ def del_article(id):
 
 # 修改文章
 @back_blue.route('/update_article/<int:id>', methods=['GET', 'POST'])
+@is_login
 def update_article(id):
     if request.method == 'GET':
-        if not session['user_id']:
-            return redirect(url_for('back.login'))
         # 获取所有分类
         art_types = Article_type.query.all()
         # 获取文章对象
@@ -249,9 +249,11 @@ def update_article(id):
         return render_template('back/add_article.html', error=error, art_types=art_types)
 
 
+# 测试tinymce
 @back_blue.route('/', methods=['GET', 'POST'])
 def editor():
     #如果是post方法就返回tinymce生成html代码，否则渲染editor.html
     if request.method=='POST':
         return request.form['content']
     return render_template('back/editor.html')
+
