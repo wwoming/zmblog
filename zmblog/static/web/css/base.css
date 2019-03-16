@@ -16,7 +16,7 @@ header { width: 100%; overflow: hidden; background: #333; position: fixed; z-ind
 .logo { position: absolute; top: 31px; left: 1px; }
 /* nav */
 .topnav { width: 100%; overflow: hidden; }  /*������ɫ*/
-nav { width: 1200px; margin: auto; color: #999; line-height: 32px; background: url(../images/logo.JPG) no-repeat left 10px top 6px }
+nav { width: 1200px; margin: auto; color: #999; line-height: 32px; background: url(../images/logo.jpg) no-repeat left 10px top 6px }
 nav ul { text-align: right; height: 46px; line-height: 46px; }
 nav ul li { display: inline; font-size: 16px; padding: 0px 20px; }
 nav ul li a { color: #fff; }
