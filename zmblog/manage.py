@@ -12,7 +12,7 @@ from web.views import web_blue
 
 app = Flask(__name__)
 
-# 第二步管理蓝图
+# 第二步管理蓝图，防止路由冲突，在连接路由的时候默认添加一个url_prefix值
 app.register_blueprint(blueprint=back_blue, url_prefix='/back')
 app.register_blueprint(blueprint=web_blue, url_prefix='/web')
 

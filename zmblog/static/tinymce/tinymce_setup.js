@@ -1,6 +1,6 @@
 tinymce.init({
     //选择class为content的标签作为编辑器
-    selector: '#editor',
+    selector: '#editor_id',
     //方向从左到右
     directionality:'ltr',
     //语言选择中文

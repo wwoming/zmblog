@@ -9,7 +9,7 @@ web_blue = Blueprint('web', __name__)
 
 
 # 首页
-@web_blue.route('/index/', methods=['GET', 'POST'])
+@web_blue.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'GET':
         # 倒序排列文章，最新文章就放5个

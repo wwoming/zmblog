@@ -5,19 +5,26 @@
     添加文章
 {% endblock%}
 
+{% block css %}
+    <!--为了富文本编辑器，放弃滚动条-->
+    <link rel="stylesheet" type="text/css" href="/static/back/css/style_no_scroll.css">
+{% endblock %}
 
 {% block js %}
-    {{ super() }}
+    <script src="/static/back/js/jquery.js"></script>
+    <!--<script src="/static/back/js/jquery.mCustomScrollbar.concat.min.js"></script>-->
+
     {#    使用jinjia导入两个js#}
-    <!--<script src="{{ url_for('static', filename='tinymce/js/tinymce/tinymce.min.js') }}"></script>-->
-    <!--<script src="{{ url_for('static', filename='tynimce/tinymce_setup.js') }}"></script>-->
-    <script type="text/javascript" src="/static/kindeditor/kindeditor-all.js"></script>
-    <script type="text/javascript" src="/static/kindeditor/lang/zh-CN.js"></script>
-    <script type="text/javascript">
-        KindEditor.ready(function(K) {
-                window.editor = K.create('#editor_id');
-        });
-   </script>
+     <!--没有滚动条就可以使用tinymce了，应该是插件相互冲突的原因-->
+    <script src="{{ url_for('static', filename='tinymce/js/tinymce/tinymce.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='tinymce/tinymce_setup.js') }}"></script>
+    <!--<script type="text/javascript" src="/static/kindeditor/kindeditor-all.js"></script>-->
+    <!--<script type="text/javascript" src="/static/kindeditor/lang/zh-CN.js"></script>-->
+    <!--<script type="text/javascript">-->
+        <!--KindEditor.ready(function(K) {-->
+                <!--window.editor = K.create('#editor_id');-->
+        <!--});-->
+   <!--</script>-->
 
 {% endblock %}
 
@@ -70,7 +77,8 @@
 
                         <li>
                             <span class="item_name" style="width:120px;">文章内容：</span>
-                            <label style="display:inline-block;padding:15px;width:800px;background:#f8f8f8;vertical-align:text-top;">-->
+                            <label style="display:inline-block;padding:15px;width:800px;
+                                    background:#f8f8f8;vertical-align:text-top;">
                                 <textarea id="editor_id" name="content" style="width:800px;height:300px;">
                                     {% if article %}
                                     {{ article.content }}
@@ -79,21 +87,21 @@
                                     {% endif %}
                                 </textarea>
                             </label>
-
-                            <!--<label style="display:inline-block;padding:15px;width:800px;background:#f8f8f8;vertical-align:text-top;">-->
-                                <!--<input class="editor" name="content" id="content">-->
-                            <!--</label>-->
                         </li>
 
                         <li>
                             <span class="item_name" style="width:120px;"></span>
                             <input type="submit" class="link_btn"/>
-                            <!--<font style="font-weight:900;">{{ error }}</font>-->
                         </li>
                     </ul>
                 </section>
             </form>
         </div>
     </section>
+
+
+
+
+
 
 {% endblock %}

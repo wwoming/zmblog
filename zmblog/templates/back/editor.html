@@ -1,24 +1,25 @@
 
-{% extends 'back/base.html' %}
-
-{% block title %}
-    富文本编辑框
-{% endblock%}
-
-
-{% block js %}
-    {{ super() }}
-    {#    使用jinjia导入两个js#}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>富文本编辑器测试</title>
+{#    使用jinjia导入两个js#}
     <script src="{{ url_for('static', filename='tinymce/js/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ url_for('static', filename='tinymce/tinymce_setup.js') }}"></script>
-
-{% endblock %}
-
-{% block content %}
-
+</head>
+<body>
      <form  method="post" action="">
-            <input class="editor" name="content" id="content">
-         <button type="submit">提交</button>
+                            <span class="item_name" style="width:120px;">文章内容：</span>
+                            <label style="display:inline-block;padding:15px;width:800px;background:#f8f8f8;vertical-align:text-top;">-->
+                                <textarea id="editor_id" name="content" style="width:800px;height:300px;">
+                                    {% if article %}
+                                    {{ article.content }}
+                                    {% else %}
+                                    &lt;strong&gt;HTML内容&lt;/strong&gt;
+                                    {% endif %}
+                                </textarea>
+                            </label>
     </form>
-
-{% endblock %}
+</body>
+</html>

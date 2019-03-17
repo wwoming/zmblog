@@ -1,5 +1,5 @@
  @charset "gb2312";
-.infos { width: 100%; background: #FFF; overflow: hidden; margin-top: 20px }
+.infos { width: 100%; background: #FFF; overflow: hidden; margin-top: 20px; padding:10px; }
 
 .newsview { padding: 20px }
 .intitle { line-height: 40px; height: 40px; font-size: 14px; ; border-bottom: #000 2px solid; }
@@ -21,18 +21,19 @@
 .news_infos p { margin-bottom: 10px }
 .news_infos img { max-width: 650px }
 .share { padding: 20px; }
-.nextinfo { line-height: 24px; width: 100%; background: #FFF;  overflow: hidden; }
+.nextinfo { line-height: 24px; width: 100%; background: #FFF;  overflow: hidden; padding:10px; }
 .nextinfo p { padding: 4px 10px; border-radius: 5px; }
 .nextinfo a{ color: #000;}
 .nextinfo a:hover { text-decoration: underline }
 
+.otherlink { padding:10px; }
 .otherlink, .xzsm, .ffsm { width: 100%; background: #FFF; overflow: hidden;  }
 .otherlink h2 { border-bottom: #000 2px solid; line-height: 40px; font-size: 14px; background: url(../images/5794.png) left 10px center no-repeat; padding-left: 40px; color: #000 }
 .otherlink ul { margin: 10px 0; overflow:hidden; padding:0 20px }
 .otherlink li { line-height: 24px; height: 24px; display: block; width: 40%; float:left; overflow: hidden; padding-left: 10px; background:url(../images/navline.jpg) no-repeat left center }
 .otherlink li a:hover { text-decoration: underline; color: #000 }
 
-.news_pl { margin: 10px 0; width: 100%; background: #FFF; overflow: hidden; margin: 20px 0 }
+.news_pl { margin: 10px 0; width: 100%; background: #FFF; overflow: hidden; margin: 20px 0; padding:10px; }
 .news_pl h2 { background: url(../images/newsbg03.png) no-repeat left 10px center; border-bottom: #000 2px solid; line-height: 40px; font-size: 14px; padding-left: 30px; color: #000 }
 .xzsm ul, .ffsm ul { padding: 20px; line-height: 24px; border-top: 6px solid #a6b5c5; }
 .bt-blue { display: block; line-height: 40px; height: 40px; background: #1e8ec5; width: 100px; text-align: center; }
