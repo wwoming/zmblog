@@ -39,13 +39,13 @@
           </div>
         </div>
         <div class="nextinfo">
-            {% if article.id == ids | min %}
+            {% if article.id == ids | max %}
             <p>上一篇：<font >无</font></p>
             {% else %}
             <p>上一篇：<a href="{{ url_for('web.info', id=pre_article.id) }}" >{{ pre_article.title }}</a></p>
             {% endif %}
 
-            {% if article.id == ids | max %}
+            {% if article.id == ids | min %}
             <p>下一篇：<font >这已经是最后一篇了</font></p>
             {% else %}
             <p>下一篇：<a href="{{ url_for('web.info', id=next_article.id) }}" >{{ next_article.title }}</a></p>

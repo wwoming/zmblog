@@ -28,4 +28,6 @@ tinymce.init({
     fontsize_formats: '10pt 12pt 14pt 18pt 24pt 36pt',
     //按tab不换行
     nonbreaking_force_tab: true,
+    imageupload_url: "submit-image",
+    paste_data_images: true,
 });

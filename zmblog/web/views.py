@@ -22,7 +22,7 @@ def index():
 def info(id):
     if request.method == 'GET':
         article = Article.query.get(id)
-        articles = Article.query.all()
+        articles = Article.query.order_by(-Article.id).all()
         # 在数据库中id的自动生成有可能被人为的打断顺序，所以不能直接通过对于id的加减进行查询
         # 只能通过取出所有id保存在列表中，根据下标的加减来查询
         ids = [art.id for art in articles]
@@ -33,7 +33,7 @@ def info(id):
             pre_article = Article.query.get(pre_id)
         # 判断是否为最后一篇
         next_article = ''
-        if id != max(ids):
+        if id != min(ids):
             next_id = ids[ids.index(id) + 1]
             next_article = Article.query.get(next_id)
         return render_template('web/info.html', article=article,
